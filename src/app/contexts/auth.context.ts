@@ -2,7 +2,8 @@ import { createContext, useContext } from "react";
 import { Profile } from "../../types/auth";
 
 export interface AuthContextProps {
-  profile: Profile;
+  profile?: Profile;
+  isLoading?: boolean;
 }
 
 const AuthContext = createContext<AuthContextProps | null>(null);

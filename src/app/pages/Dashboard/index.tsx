@@ -24,12 +24,22 @@ import {
   TableCellsIcon,
 } from "@heroicons/react/24/outline";
 import { Languages } from "../../../etc/i18n";
+import { useAuth } from "../../contexts/auth.context";
+import { useEffect } from "react";
 
 export default function DashboardPage() {
   const [opened, { toggle }] = useDisclosure();
   const { t, i18n } = useTranslation();
   const { pathname } = useLocation();
   const keys = pathname.split("/").slice(1);
+
+  const { profile, isLoading } = useAuth();
+
+  useEffect(() => {
+    if (!isLoading && !profile) {
+      window.location.href = "/auth";
+    }
+  }, [isLoading]);
 
   const navItems = [
     {
@@ -54,17 +64,23 @@ export default function DashboardPage() {
     },
   ];
 
+  const handleLogout = () => {
+    const callback = encodeURIComponent(`${window.location.origin}/auth`);
+    const logoutUrl = `/api/auth/2/logout?callback=${callback}`;
+    window.location.href = logoutUrl;
+  };
+
   return (
     <AppShell
       header={{ height: 60 }}
       footer={{ height: 60 }}
-      navbar={{ width: 240, breakpoint: "sm", collapsed: { mobile: !opened } }}
+      navbar={{ width: 240, breakpoint: "xs", collapsed: { mobile: !opened } }}
       padding="md"
     >
       <AppShell.Header>
         <Group h="100%" px="md" justify="space-between">
-          <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
-          <Group gap="xs">
+          <Burger opened={opened} onClick={toggle} hiddenFrom="xs" size="sm" />
+          <Group gap="xs" visibleFrom="xs">
             <McmIcon size={48} />
             <Title order={2}>MCM App</Title>
           </Group>
@@ -75,6 +91,7 @@ export default function DashboardPage() {
               rightSection={
                 <ArrowRightStartOnRectangleIcon className="size-6" />
               }
+              onClick={handleLogout}
             >
               {t("logout")}
             </Button>
@@ -101,6 +118,10 @@ export default function DashboardPage() {
         </Group>
       </AppShell.Header>
       <AppShell.Navbar p="md">
+        <Group gap="xs" hiddenFrom="xs">
+          <McmIcon size={48} />
+          <Title order={2}>MCM App</Title>
+        </Group>
         {navItems.map((item) => (
           <NavLink
             key={item.key}

@@ -43,6 +43,7 @@
   "enterCategoryName": "Enter category name",
   "deleteCategoriesMessage": "Are you sure you want to delete the selected categories?",
   "language": "Language",
+  "selectLanguage": "Select language",
   "color": "Color",
   "selectColor": "Select Color",
   "re-analyze": "Re-analyze",
