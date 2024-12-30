@@ -7,6 +7,7 @@ export default function AuthProvider({ children }: PropsWithChildren) {
   const getProfileQuery = useQuery({
     queryKey: ["getProfile"],
     queryFn: getProfile,
+    retry: 0,
   });
 
   return (

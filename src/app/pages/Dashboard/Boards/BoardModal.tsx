@@ -10,6 +10,7 @@ import {
 } from "@mantine/core";
 import { BoardType } from "../../../../types/board";
 import { useTranslation } from "react-i18next";
+import CurrencySelect from "../../../components/CurrencySelect";
 
 export interface BoardModalProps extends ModalProps {
   board: BoardType;
@@ -32,7 +33,7 @@ export default function BoardModal(props: BoardModalProps) {
         <TextInput label={t("title")} placeholder={t("enterTitle")} />
         {!props.board.id && (
           <>
-            <Select
+            <CurrencySelect
               label={t("currencyUnit")}
               placeholder={t("selectCurrencyUnit")}
             />

@@ -28,7 +28,7 @@ import { useAuth } from "../../contexts/auth.context";
 import { useEffect } from "react";
 
 export default function DashboardPage() {
-  const [opened, { toggle }] = useDisclosure();
+  const [opened, { toggle, close }] = useDisclosure();
   const { t, i18n } = useTranslation();
   const { pathname } = useLocation();
   const keys = pathname.split("/").slice(1);

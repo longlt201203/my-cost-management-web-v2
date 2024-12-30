@@ -8,7 +8,8 @@ export default defineConfig({
     host: "0.0.0.0",
     proxy: {
       "^/api": {
-        target: "https://mcmapp.online",
+        // target: "https://mcmapp.online",
+        target: "http://localhost:3000",
         changeOrigin: true,
       },
     },
