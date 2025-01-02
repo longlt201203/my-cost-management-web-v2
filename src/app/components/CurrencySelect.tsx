@@ -8,10 +8,10 @@ export default function CurrencySelect(props: CurrencySelectProps) {
     <Select
       {...props}
       data={Object.keys(CurrencyUnit)}
-      renderOption={({ option }) =>
+      renderOption={({ option, checked }) =>
         `${option.value} (${
           CurrencyUnit[option.value as keyof typeof CurrencyUnit]
-        })`
+        })${checked ? " ✓" : ""}`
       }
     />
   );

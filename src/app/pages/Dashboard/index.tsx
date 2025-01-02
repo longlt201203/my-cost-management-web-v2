@@ -105,11 +105,13 @@ export default function DashboardPage() {
               <Menu.Dropdown>
                 {Object.entries(Languages).map(([key, value]) => (
                   <Menu.Item
+                    key={key}
                     onClick={() => {
                       i18n.changeLanguage(key);
                     }}
                   >
                     {value}
+                    {i18n.language === key ? " ✓" : ""}
                   </Menu.Item>
                 ))}
               </Menu.Dropdown>
